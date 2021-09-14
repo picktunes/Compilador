@@ -1,0 +1,86 @@
+1a parte: ESPECIFICAÇÃO
+1) efetuar, se for o caso, as correções indicadas no avaliação do trabalho no.1
+2) incluir a definição das palavras reservadas da linguagem
+3) incluir a definição dos símbolos especiais
+4) incluir definição para reconhecer e ignorar caracteres de formatação
+5) incluir definição para reconhecer e ignorar comentários
+
+
+
+2a parte: IMPLEMENTAÇÃO
+1) verificar opções (em Ferramentas > Opções): 
+	Forma de Entrada: String
+	Implementação do Autômato: Tabela Compactada (Java)
+	Diferenciar maiúsculas/minúsculas ...
+
+2) gerar código (em Ferramentas > Gerar Código): escolher pasta, gerar todos os arquivos
+
+3) para usar o código gerado, associado ao botão compilar
+
+   Lexico lexico = new Lexico();
+   lexico.setInput( /* texto do editor de textos */ );
+   try {
+   Token t = null;
+   while ( (t = lexico.nextToken()) != null ) {
+     System.out.println(t.getLexeme()); 
+     
+	 // só escreve o lexema, necessário escrever t.getId, t.getPosition()
+     // t.getId () - retorna o identificador da classe. Olhar Constants.java e
+     // adaptar, pois deve ser apresentada a classe por extenso
+     // t.getPosition () - retorna a posição inicial do lexema no editor, necessário
+     // adaptar para mostrar a linha	
+     // esse código apresenta os tokens enquanto não ocorrer erro
+     // no entanto, os tokens devem ser apresentados SÓ se não ocorrer erro, tem que adaptar		
+   }
+   }
+   catch ( LexicalError e ) {  // tratamento de erros
+     System.out.println(e.getMessage() + " em " + e.getPosition());
+ 
+     // e.getMessage() - retorna a mensagem de erro de SCANNER_ERRO (olhar 
+     // ScannerConstants.java e adaptar conforme o enunciado da parte 2)
+     // e.getPosition() - retorna a posição inicial do erro, tem que adaptar 
+     // para mostrar a linha 
+	 
+	 // quando for palavra reservada inválida, símbolo inválido e quando for identificador inválido,
+	 // necesssário adaptar para mostrar também a sequência que causou o erro:
+	 // Erro na linha 1 – char palavra reservada inválida
+	 // Erro na linha 1 – I_ identificador inválido
+	 // Erro na linha 1 – @ símbolo inválido
+	 
+	 // Erro na linha 1 – constante string inválida ou não finalizada
+	 // Erro na linha 1 – comentário de bloco inválido ou não finalizado, deve ser apresenta a linha onde o 
+	 // comentário inicia
+	 
+    } 
+	
+	
+	
+   Lexico lexico = new Lexico();
+   lexico.setInput( /* texto do editor de textos */ );
+   try {
+   Token t = null;
+   while ( (t = lexico.nextToken()) != null ) {
+     System.out.println(t.getLexeme()); 
+   }
+   }
+   catch ( LexicalError e ) {  // tratamento de erros
+     System.out.println(e.getMessage() + " em " + e.getPosition());
+ 
+   } 
+   
+ testar o compilador: programa_teste01
+ {
+     isso é um comentário
+ }
+ while I_area [
+ 01.0
+ 
+ 
+    
+ testar o compilador: programa_teste02
+ {
+     isso é um comentário
+ }
+ while I_area @
+ 01.0
+
